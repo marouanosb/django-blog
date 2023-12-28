@@ -33,8 +33,16 @@
                   </div>
                   <!-- Navbar Right Side -->
                   <div class="navbar-nav">
-                    <a class="nav-item nav-link" href="#">Login</a>
-                    <a class="nav-item nav-link" href="{% url 'registerpage' %}">Register</a>
+                    {% if request.user.is_authenticated %} <!--check if user is logged in-->
+                    <a class="nav-item nav-link" href="{% url 'profile' %}">Profile</a>
+                    <form action="{% url 'logout' %}" method="POST">
+                      {% csrf_token %}
+                      <input type="submit" class="nav-item nav-link" value="Logout">
+                    </form>
+                    {% else %}
+                    <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
+                    <a class="nav-item nav-link" href="{% url 'register' %}">Register</a>
+                    {% endif %}
                   </div>
                 </div>
               </div>
@@ -46,7 +54,7 @@
               <div class="col-md-8">
                 {% if messages %}
                   {% for message in messages %}
-                    <!-- {{message.tags}} to get the message tag if it's a success, debug...etc --> 
+                    <!-- {{message.tags}} to get the message tag if it's a success, debug...etc for bootstrap --> 
                     <div class="alert alert-{{message.tags}}">{{message}}</div>
                   {% endfor %}
                 {% endif %}

@@ -126,5 +126,10 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+#for crispy to work with bs4
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
 CRISPY_TEMPLATE_PACK = "bootstrap4"
+
+#redirect login path to te homepage instead of the default path
+LOGIN_REDIRECT_URL = 'homepage'
+LOGIN_URL = 'login'

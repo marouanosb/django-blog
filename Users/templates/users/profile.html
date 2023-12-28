@@ -1,0 +1,7 @@
+{% extends "blog/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <!--user.username is automaticly instanciated on authentification no need to pass it as context-->
+    <h1>Welcome to your profile, {{user.username}}!</h1>    
+{% endblock content %}
