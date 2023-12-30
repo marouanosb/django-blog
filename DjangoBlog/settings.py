@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -34,7 +35,8 @@ INSTALLED_APPS = [
     'Blog.apps.BlogConfig',
     'Users.apps.UsersConfig',
     'crispy_forms',
-    'crispy_bootstrap4', 
+    'crispy_bootstrap4',
+    'django_cleanup.apps.CleanupConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -120,6 +122,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = 'static/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')    #specify physical location of image files/media
+MEDIA_URL = 'media/'  #public url of that dir through browser
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field

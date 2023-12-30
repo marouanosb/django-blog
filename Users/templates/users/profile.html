@@ -3,5 +3,24 @@
 
 {% block content %}
     <!--user.username is automaticly instanciated on authentification no need to pass it as context-->
-    <h1>Welcome to your profile, {{user.username}}!</h1>    
+    <div class="content-section">
+        <div class="media">
+          <img class="rounded-circle account-img" src="{{ user.profile.image.url }}">
+          <div class="media-body">
+            <h2 class="account-heading">{{ user.username }}</h2>
+            <p class="text-secondary">{{ user.email }}</p>
+          </div>
+        </div>
+        <form method="POST" enctype="multipart/form-data"> <!-- in order to save images -->
+          {% csrf_token %} <!-- required for form portection -->
+          <fieldset class="form-group">
+              <legend class="border-bottom mb-4">Profile info:</legend>
+              {{ u_form|crispy }}
+              {{ p_form|crispy }}
+          </fieldset>
+          <div class="form-group">
+              <button type="submit" class="btn btn-outline-info">Update</button>
+          </div>
+      </form>
+      </div> 
 {% endblock content %}
